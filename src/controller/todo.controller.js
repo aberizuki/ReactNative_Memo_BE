@@ -14,6 +14,19 @@ const todoController = {
       });
   },
 
+  getId: (req, res) => {
+    return todoModel
+      .getId(req.params.id)
+      .then((result) => {
+        return res
+          .status(200)
+          .send({ message: "success", data: result, status: 200 });
+      })
+      .catch((error) => {
+        return res.status(500).send({ message: error });
+      });
+  },
+
   add: (req, res) => {
     console.log(req.body);
     const request = {

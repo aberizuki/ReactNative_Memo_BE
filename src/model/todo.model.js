@@ -14,6 +14,18 @@ const todoModel = {
     });
   },
 
+  getId: function (id) {
+    return new Promise((resolve, reject) => {
+      db.query(`SELECT id, notes FROM todo WHERE id='${id}'`, (err, result) => {
+        if (err) {
+          return reject(err.message);
+        } else {
+          return resolve(result.rows);
+        }
+      });
+    });
+  },
+
   add: ({ notes }) => {
     // console.log(notes);
     return new Promise((resolve, reject) => {
